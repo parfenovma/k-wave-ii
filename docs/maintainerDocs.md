@@ -32,6 +32,18 @@ Only maintainers can merge PRs into a feature branch or `develop`. Merges need a
 <Maintainers can override that protection, but they are strongly advised not to. This measure is there only for emergencies, not to be abused.>
 
 
+## pre-commit.ci setup
+
+[pre-commit.ci](https://pre-commit.ci/) runs the hooks in `.pre-commit-config.yaml` on pull requests and pushes automatic fixes to the PR branch. It also opens hook-update PRs against `develop`. Local checks use the same configuration.
+
+The GitHub App must be enabled separately from the repository configuration. Before merging the change that removes `.github/workflows/pre-commit.yml`:
+
+1. A repository administrator must install or enable the [pre-commit.ci GitHub App](https://github.com/apps/pre-commit-ci) for `ucl-bug/k-wave-ii`.
+2. Confirm that pre-commit.ci runs on the migration PR. Check an automatic formatting fix on a test PR from a fork as well.
+3. In each applicable branch protection rule or ruleset, replace the old GitHub Actions `pre-commit` required check with the check reported by pre-commit.ci. Select the check after it has run successfully, and keep all other required checks.
+
+Only remove the old workflow once the replacement check is active. If enabling the app is delayed, retain the workflow until the migration can be completed. The MATLAB tests, code-quality, licence, and documentation workflows remain in GitHub Actions.
+
 ## Branch management
 
 Once a feature reaches a certain maturity, maintainers can choose to merge the related branch into `develop`, to let adventurous users try it out. They will probably have to resolve some conflicts at that point.
