@@ -1,2 +1,2 @@
-This file deliberately contains formatting errors for a pre-commit.ci smoke test.   
+This file deliberately contains formatting errors for a pre-commit.ci smoke test.
 The bot should remove trailing whitespace and add a final newline.
