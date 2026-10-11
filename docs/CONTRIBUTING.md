@@ -78,19 +78,12 @@ git switch -c 62-implement-a-new-feature-<your-username>
 
 ### 6. Run pre-commit checks
 
-One of the dependencies installed above is [pre-commit](https://pre-commit.com/). k-Wave-II uses `pre-commit` to run automated checks (formatting, spelling, line endings, etc.) to keep the codebase consistent. [pre-commit.ci](https://pre-commit.ci/) runs the same hooks on pull requests and automatically commits fixes, such as removing trailing whitespace, to the PR branch. Checks that cannot be fixed automatically still need to be resolved by the contributor. Bot commits are checked, but do not receive automatic fix commits.
-
-* To run the checks automatically on every `git commit`, install the hooks once in your clone:
-```
-pre-commit install
-```
+k-Wave-II uses [pre-commit](https://pre-commit.com/) to check formatting, spelling, and line endings. Run `pre-commit install` once to enable these checks on local commits. [pre-commit.ci](https://pre-commit.ci/) runs the same hooks on pull requests and commits automatic fixes to the PR branch. Pull any fix commits before continuing locally; remaining check failures need to be fixed manually.
 
 * To run pre-commit on all files use
 ```
 pre-commit run -a
 ```
-
-Running the hooks locally lets you review fixes before committing. If pre-commit.ci adds a fix commit to your PR, pull those changes into your local branch before continuing (`git pull --ff-only` when your local branch has no additional commits). To request another CI run, comment `pre-commit.ci run` on the PR on a line by itself.
 
 ### 7. Add, commit, push
 
@@ -108,7 +101,7 @@ git push -u origin <my-branch>
 
 * When your branch is ready for merging, go to GitHub `k-wave-ii` and open a pull request (new pull request →  compare across forks) to merge your changes into the `develop` branch of the upstream `k-wave-ii` repository.
 
-The most likely cause of CI test failure for small changes is `pre-commit`; see [Run pre-commit checks](#6-run-pre-commit-checks) for local checks and how to work with automatic fixes. If you need feedback or help but your branch is not ready to merge, open a draft pull request (PR). Please avoid rebasing branches that are shared with other contributors. For shared work we recommend using `git merge` instead to avoid disrupting others.
+The most likely cause of CI test failure for small changes is `pre-commit`; see below how to fix these failures before you commit. If you need feedback or help but your branch is not ready to merge, open a draft pull request (PR). Please avoid rebasing branches that are shared with other contributors. For shared work we recommend using `git merge` instead to avoid disrupting others.
 
 ## Conditions for Merging a PR
 
